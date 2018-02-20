@@ -1,0 +1,8 @@
+<% total_jobs = 0 %>
+<% @jobs.each do |j| %>
+  <%= j %>
+  <% total_jobs = total_jobs + 1 %>
+<% end %>
+<br>
+<br>
+<%= "Total Jobs: #{total_jobs}" %>
