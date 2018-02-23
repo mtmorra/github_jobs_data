@@ -5,6 +5,9 @@
 ## Rails Version 
 5.1.5
 
+## Install Dependencies
+run ```bundle install``` from application directory
+
 ## Running Application
 To start: ```rails s``` from application directory
 
