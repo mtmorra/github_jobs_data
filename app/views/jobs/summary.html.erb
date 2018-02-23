@@ -1,8 +1,11 @@
-<% total_jobs = 0 %>
-<% @jobs.each do |j| %>
-  <%= j %>
-  <% total_jobs = total_jobs + 1 %>
+<% @jobs_summary_hash.each do |city, city_summary_hash| %>
+    <%= content_tag(:p, "#{city}:") %>
+    <% total_city_jobs = city_summary_hash.delete("total_jobs") %>
+    <% city_summary_hash.each do |skill, experience_hash| %>
+      <%= content_tag(:p, "- #{skill}:", class: "skill") %>
+      <% experience_hash.each do |years, count| %>
+        <%= content_tag(:p, "- #{years} years experience: #{number_to_percentage((count.to_f/total_city_jobs.to_f)*100, precision: 0)}", class: "experience") %>
+      <% end %>
+    <% end %>
 <% end %>
-<br>
-<br>
-<%= "Total Jobs: #{total_jobs}" %>
+<%= "Sourced: #{@total_jobs} job postings" %>

@@ -42,7 +42,7 @@ module Github
       end
 
       def self.convert_to_job(data)
-        Job.new(data["id"], data["location"], data["description"])
+        Job.new(data)
       end
     end
   end
