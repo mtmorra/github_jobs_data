@@ -23,7 +23,7 @@ class Job
     doc.search('//text()').map{|t| t.text.strip}.reject(&:blank?)
   end
 
-  def skills # {"Ruby"=>1, "MySQL"=>1, "Node.js"=>1}
+  def skills # {"Ruby"=>1, "MySQL"=>1}
     skill_hashes = []
     skills_hash = {}
     extract_description_text.each do |text|
@@ -35,7 +35,7 @@ class Job
     skills_hash
   end
 
-  def skills_summary
+  def skills_summary # {"Ruby"=>{"0-2"=>1, "3-5"=>0, "5+"=>0}, "MySQL"=>{"0-2"=>1, "3-5"=>0, "5+"=>0}}
     skills_hash = skills
     skills_summary_hash = {}
     skills_hash.each do |skill, years_required|
@@ -52,7 +52,7 @@ class Job
     skills_summary_hash
   end
 
-  def cities_summary
+  def cities_summary # {"San Francisco"=>{"total_jobs"=>1, Ruby"=>{"0-2"=>1, "3-5"=>0, "5+"=>0}, "MySQL"=>{"0-2"=>1, "3-5"=>0, "5+"=>0}}}
     cities_hash = {}
     job_skills_summary = skills_summary
     cities.each do |city|
@@ -61,7 +61,7 @@ class Job
     cities_hash
   end
 
-  def cities
+  def cities # ["San Francisco", "New York"]
     if location.nil?
       []
     else
